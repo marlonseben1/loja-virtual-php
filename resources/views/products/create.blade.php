@@ -31,11 +31,13 @@ dark:text-white">Cadastrar Produto</h1>
         @error('price')
         <p class="text-red-600 mb-4 text-sm">{{ $message }}</p>
         @enderror
-
-        <label class="block mb-1 text-gray-700 dark:text-gray-300">Imagem:</label>
-        <input name="image" type="file" accept="image/*" class="w-full p-2 mb-4
+        <div x-data="{ imageURL: null }">
+            <label class="block mb-1 text-gray-700 dark:text-gray-300">Imagem:</label>
+            <input x-on:change="imageURL = URL.createObjectURL(event.target.files[0])" name="image" type="file" accept="image/*" class="w-full p-2 mb-4
 rounded border dark:bg-gray-700 dark:text-white" />
 
+            <img x-show="imageURL" x-bind:src="imageURL" class="my-4 h-48" />
+        </div>
         @error('image')
         <p class="text-red-600 font-bold text-sm mb-4">{{ $message }}</p>
         @enderror

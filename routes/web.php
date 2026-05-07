@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TypesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/update/{id}', [ProductsController::class, 'edit'])->name('products.edit');
     Route::post('/products/update/', [ProductsController::class, 'update'])->name('products.update');
     Route::get('/products/delete/{id}', [ProductsController::class, 'destroy'])->name('products.destroy');
+
+    Route::get('/types/new', [TypesController::class, 'create'])->name('types.create');
 });
 
 require __DIR__ . '/auth.php';
